@@ -1,0 +1,27 @@
+{
+  "name": "demo-one-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6",
+    "bcryptjs": "^3",
+    "cookie-parser": "^1",
+    "cors": "^2",
+    "express": "^5",
+    "jsonwebtoken": "^9",
+    "prisma": "^6"
+  },
+  "devDependencies": {
+    "@types/express": "^5",
+    "@types/jsonwebtoken": "^9",
+    "@types/node": "^24",
+    "@types/passport": "^1.0.17",
+    "@types/passport-google-oauth20": "^2.0.17",
+    "@types/paypal__checkout-server-sdk": "^1.0.8",
+    "ts-node-dev": "^2",
+    "typescript": "^5"
+  }
+}
