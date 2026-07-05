@@ -2,9 +2,6 @@
 
 import React, { useEffect, useRef } from 'react';
 
-interface SmokeBackgroundProp {
-  smokeColor?: string;
-}
 // --- FRAGMENT SHADER ---
 // We add a `u_color` uniform to accept a color from our component.
 const fragmentShaderSource = `#version 300 es
@@ -156,7 +153,7 @@ const hexToRgb = (hex: string): [number, number, number] | null => {
 };
 
 // --- REACT COMPONENT ---
-interface AnimatedBackgroundProps {
+interface SmokeBackgroundProps {
   smokeColor?: string; // e.g., "#8A2BE2"
 }
 
