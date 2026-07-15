@@ -31,6 +31,7 @@ app.use(express.json());
 app.get("/", (_req, res) => {
   res.json({ message: "Demo One Backend Running" });
 });
+app.get("/status", (req, res) => { res.send("<h1>Backend is up and running!</h1>"); });
 
 app.use("/api/products", productRoutes);
 
