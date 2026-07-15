@@ -35,6 +35,7 @@ app.get("/", (_req, res) => {
 app.get("/status", (req, res) => { res.send("<h1>Backend is up and running!</h1>"); });
 
 app.use("/api/products", productRoutes);
+app.use("/status", statusRoutes);
 
 const port = Number(process.env.PORT) || 5000;
 
