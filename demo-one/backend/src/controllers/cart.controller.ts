@@ -3,16 +3,32 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const getUserId = (req: Request, res: Response): string | null => {
+  if (!req.user) {
+    res.status(401).json({ error: "Unauthorized" });
+    return null;
+  }
+  return req.user.id;
+};
+
+const getItemId = (req: Request): string | null => {
+  const { itemId } = req.params;
+  if (Array.isArray(itemId)) {
+    return itemId[0] ?? null;
+  }
+  return itemId ?? null;
+};
+
 // Fetch cart items for the current user
 export const getCart = async (req: Request, res: Response) => {
   try {
-    // For simplicity, let's assume user ID is coming from a session or token
-    const userId = req.user.id; // Ensure you get user info from auth middleware or a session
+    const userId = getUserId(req, res);
+    if (!userId) return;
 
     const cartItems = await prisma.cart.findMany({
       where: { userId },
       include: {
-        product: true, // If you want product details
+        product: true,
       },
     });
 
@@ -26,7 +42,9 @@ export const getCart = async (req: Request, res: Response) => {
 // Add a product to the cart
 export const addToCart = async (req: Request, res: Response) => {
   try {
-    const userId = req.user.id; // Ensure this comes from auth
+    const userId = getUserId(req, res);
+    if (!userId) return;
+
     const { productId, quantity } = req.body;
 
     // Check if item already exists in cart
@@ -63,8 +81,13 @@ export const addToCart = async (req: Request, res: Response) => {
 // Remove an item from the cart
 export const removeFromCart = async (req: Request, res: Response) => {
   try {
-    const userId = req.user.id; // Ensure this comes from auth
-    const { itemId } = req.params;
+    const userId = getUserId(req, res);
+    if (!userId) return;
+
+    const itemId = getItemId(req);
+    if (!itemId) {
+      return res.status(400).json({ error: "Item ID required" });
+    }
 
     await prisma.cart.delete({
       where: { id: itemId, userId },

@@ -52,6 +52,7 @@ model Product {
 
   reviews       Review[]
   wishlist      Wishlist[]
+  cart          Cart[]
 }
 
 model Category {
@@ -91,6 +92,7 @@ model Cart {
   productId     String
 
   user          User        @relation(fields:[userId], references:[id])
+  product       Product     @relation(fields:[productId], references:[id])
 }
 
 model Order {
