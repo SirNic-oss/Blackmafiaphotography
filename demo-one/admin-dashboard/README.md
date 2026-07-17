@@ -13,7 +13,7 @@ Open [http://localhost:3001](http://localhost:3001).
 
 ## Environment
 
-Copy `.env.local` and set `NEXT_PUBLIC_API_URL` to your backend URL (default: `http://localhost:5000`).
+Copy `.env.local` and set `NEXT_PUBLIC_API_URL` to your backend URL (default: `https://fashion-fit-backend-7kgf.onrender.com`).
 
 ## Demo Login
 
