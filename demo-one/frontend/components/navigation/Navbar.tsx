@@ -30,7 +30,7 @@ export default function Navbar() {
           href="/"
           className="text-white font-bold text-2xl tracking-tight hover:opacity-90 transition-opacity"
         >
-          DEMO ONE
+           FASHION FIT
         </Link>
 
         <div className="hidden md:flex gap-10">
