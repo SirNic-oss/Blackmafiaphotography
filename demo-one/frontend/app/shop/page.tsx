@@ -11,7 +11,7 @@ export default function ShopPage() {
       <div className="max-w-7xl mx-auto">
         <h1 className="text-white text-6xl font-bold mb-4">Shop</h1>
         <p className="text-zinc-400 text-lg mb-16 max-w-2xl">
-          Explore the full Demo One collection, loaded from your
+          Explore the full Fashion Fit collection, loaded from your
           backend API.
         </p>
 
