@@ -1,14 +1,17 @@
 import { Request, Response } from "express";
+import { PrismaClient } from "@prisma/client";
 import { fallbackProducts } from "../data/fallback-products";
+
+const prisma = new PrismaClient();
 
 async function fetchProductsFromDb() {
   try {
-    const { PrismaClient } = await import("@prisma/client");
-    const prisma = new PrismaClient();
     const products = await prisma.product.findMany({
-      orderBy: { id: "desc" },
+      orderBy: {
+        id: "desc",
+      },
     });
-    await prisma.$disconnect();
+
     return products;
   } catch {
     return null;
@@ -24,12 +27,20 @@ export async function getProducts(
   const dbProducts = await fetchProductsFromDb();
 
   if (dbProducts && dbProducts.length > 0) {
-    return res.json({ products: dbProducts });
+    return res.json({
+      products: dbProducts,
+    });
   }
 
-  return res.json({ products: fallbackProducts });
+  return res.json({
+    products: fallbackProducts,
+  });
 }
-export const getProductById = async (req: Request, res: Response) => {
+
+export async function getProductById(
+  req: Request,
+  res: Response
+) {
   try {
     const product = await prisma.product.findUnique({
       where: {
@@ -37,18 +48,27 @@ export const getProductById = async (req: Request, res: Response) => {
       },
     });
 
-    if (!product) {
-      return res.status(404).json({
-        error: "Product not found",
-      });
+    if (product) {
+      return res.json(product);
     }
 
-    res.json(product);
+    // If database has no product, search fallback products
+    const fallbackProduct = fallbackProducts.find(
+      (p) => p.id === req.params.id
+    );
+
+    if (fallbackProduct) {
+      return res.json(fallbackProduct);
+    }
+
+    return res.status(404).json({
+      error: "Product not found",
+    });
   } catch (error) {
     console.error(error);
 
-    res.status(500).json({
+    return res.status(500).json({
       error: "Server error",
     });
   }
-};
+}
