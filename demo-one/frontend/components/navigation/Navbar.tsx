@@ -9,7 +9,9 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
   { href: "/story", label: "Story" },
-  { href: "/contact", label: "Contact" },
+  { href: "/cart", label: "Cart" },
+  { href: "/checkout", label: "Checkout" },
+  
 ] as const;
 
 function linkClass(isActive: boolean) {
