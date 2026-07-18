@@ -15,6 +15,7 @@ export default function ProductCard({
   product,
 }: ProductCardProps) {
   const [liked, setLiked] = useState(false);
+  const router = useRouter();
 
   return (
     <motion.div
