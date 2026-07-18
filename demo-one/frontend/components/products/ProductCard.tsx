@@ -113,6 +113,7 @@ export default function ProductCard({
           </button>
 
           <button
+            onClick={() => router.push(`/products/${product.id}`)}
             className="
             bg-white/10
             border
