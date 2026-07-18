@@ -17,6 +17,13 @@ export default function ProductCard({
   const [liked, setLiked] = useState(false);
   const router = useRouter();
 
+  const handleAddToCart = () => {
+    console.log("Added to cart:", product);
+
+    // This is where we'll later connect to
+    // Zustand + Backend API
+  };
+
   return (
     <motion.div
       whileHover={{
@@ -28,14 +35,14 @@ export default function ProductCard({
         duration: 0.3,
       }}
       className="
-      group
-      relative
-      rounded-3xl
-      overflow-hidden
-      bg-white/5
-      backdrop-blur-xl
-      border
-      border-white/10
+        group
+        relative
+        rounded-3xl
+        overflow-hidden
+        bg-white/5
+        backdrop-blur-xl
+        border
+        border-white/10
       "
     >
       <div className="relative overflow-hidden">
@@ -43,37 +50,37 @@ export default function ProductCard({
           src={product.images[0]}
           alt={product.name}
           className="
-          h-[500px]
-          w-full
-          object-cover
-          transition-transform
-          duration-700
-          group-hover:scale-110
+            h-[500px]
+            w-full
+            object-cover
+            transition-transform
+            duration-700
+            group-hover:scale-110
           "
         />
 
         <div
           className="
-          absolute
-          inset-0
-          bg-gradient-to-t
-          from-black
-          via-black/30
-          to-transparent
+            absolute
+            inset-0
+            bg-gradient-to-t
+            from-black
+            via-black/30
+            to-transparent
           "
         />
 
         <button
           onClick={() => setLiked(!liked)}
           className="
-          absolute
-          top-4
-          right-4
-          z-20
-          p-2
-          rounded-full
-          bg-black/30
-          backdrop-blur-md
+            absolute
+            top-4
+            right-4
+            z-20
+            p-2
+            rounded-full
+            bg-black/30
+            backdrop-blur-md
           "
         >
           <Heart
@@ -101,25 +108,35 @@ export default function ProductCard({
 
         <div className="flex gap-3 mt-6">
           <button
+            onClick={handleAddToCart}
             className="
-            flex-1
-            bg-white
-            text-black
-            py-3
-            rounded-full
+              flex-1
+              bg-white
+              text-black
+              py-3
+              rounded-full
+              hover:bg-zinc-200
+              transition
+              flex
+              items-center
+              justify-center
             "
           >
             <ShoppingBag />
           </button>
 
           <button
-            onClick={() => router.push(`/products/${product.id}`)}
+            onClick={() =>
+              router.push(`/products/${product.id}`)
+            }
             className="
-            bg-white/10
-            border
-            border-white/10
-            p-3
-            rounded-full
+              bg-white/10
+              border
+              border-white/10
+              p-3
+              rounded-full
+              hover:bg-white/20
+              transition
             "
           >
             <Eye />
