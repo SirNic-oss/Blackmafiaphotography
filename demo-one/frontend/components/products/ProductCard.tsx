@@ -5,6 +5,7 @@ import { Product } from "@/types/product";
 import { Heart, ShoppingBag, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   product: Product;
