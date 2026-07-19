@@ -6,6 +6,7 @@ import { Heart, ShoppingBag, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useCartStore } from "@/store/cartStore";
 
 interface ProductCardProps {
   product: Product;
@@ -16,12 +17,10 @@ export default function ProductCard({
 }: ProductCardProps) {
   const [liked, setLiked] = useState(false);
   const router = useRouter();
+  const addToCart = useCartStore((state) => state.addToCart);
 
   const handleAddToCart = () => {
-    console.log("Added to cart:", product);
-
-    // This is where we'll later connect to
-    // Zustand + Backend API
+    addToCart(product);
   };
 
   return (
