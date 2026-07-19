@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 async function getProduct(id: string) {
@@ -24,7 +24,9 @@ async function getProduct(id: string) {
 export default async function ProductPage({
   params,
 }: PageProps) {
-  const product = await getProduct(params.id);
+  const { id } = await params;
+
+  const product = await getProduct(id);
 
   if (!product) {
     return (
@@ -48,7 +50,6 @@ export default async function ProductPage({
   return (
     <main className="min-h-screen bg-black text-white pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
-
         {/* Product Image */}
         <div>
           <img
@@ -60,7 +61,6 @@ export default async function ProductPage({
 
         {/* Product Details */}
         <div>
-
           <p className="text-zinc-400 uppercase tracking-[0.3em]">
             Fashion Fit
           </p>
@@ -78,7 +78,6 @@ export default async function ProductPage({
           </p>
 
           {/* Colours */}
-
           <div className="mt-12">
             <h3 className="text-xl mb-4">
               Colours
@@ -97,7 +96,6 @@ export default async function ProductPage({
           </div>
 
           {/* Sizes */}
-
           <div className="mt-10">
             <h3 className="text-xl mb-4">
               Sizes
@@ -116,19 +114,17 @@ export default async function ProductPage({
           </div>
 
           {/* Buttons */}
-
           <div className="flex gap-4 mt-14">
-
             <button
               className="
-              flex-1
-              bg-white
-              text-black
-              py-5
-              rounded-full
-              font-semibold
-              hover:scale-105
-              transition
+                flex-1
+                bg-white
+                text-black
+                py-5
+                rounded-full
+                font-semibold
+                hover:scale-105
+                transition
               "
             >
               Add to Cart
@@ -136,28 +132,24 @@ export default async function ProductPage({
 
             <button
               className="
-              flex-1
-              border
-              border-white/20
-              py-5
-              rounded-full
-              hover:bg-white/10
-              transition
+                flex-1
+                border
+                border-white/20
+                py-5
+                rounded-full
+                hover:bg-white/10
+                transition
               "
             >
               Buy Now
             </button>
-
           </div>
 
           {/* Stock */}
-
           <p className="mt-8 text-zinc-400">
             Stock Available: {product.stock}
           </p>
-
         </div>
-
       </div>
     </main>
   );
