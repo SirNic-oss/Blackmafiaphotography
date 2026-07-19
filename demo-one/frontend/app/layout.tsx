@@ -2,6 +2,7 @@ import "./globals.css";
 
 import Navbar from "@/components/navigation/Navbar";
 import SmokeBackground from "@/components/background/SmokeBackground";
+import CartToast from "@/components/cart/CartToast";
 
 export default function RootLayout({
   children,
@@ -16,6 +17,7 @@ export default function RootLayout({
        <div className="relative z-10">
         <Navbar />
          {children}
+         <CartToast />
          </div>
       </body>
     </html>
