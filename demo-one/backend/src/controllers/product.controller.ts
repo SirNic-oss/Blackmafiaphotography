@@ -44,7 +44,9 @@ export async function getProductById(
   try {
     const product = await prisma.product.findUnique({
       where: {
-        id: req.params.id,
+        id: Array.isArray(req.params.id)
+  ? req.params.id[0]
+  : req.params.id,
       },
     });
 
