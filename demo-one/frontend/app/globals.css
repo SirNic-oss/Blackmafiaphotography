@@ -15,3 +15,57 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.policy-content section {
+  margin-bottom: 2rem;
+}
+
+.policy-content h2 {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.policy-content p,
+.policy-content li {
+  color: #a1a1aa;
+  line-height: 1.75;
+}
+
+.policy-content ul {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.policy-content a {
+  color: #e4e4e7;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.policy-content code {
+  font-size: 0.875em;
+  color: #d4d4d8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+}
+
+.policy-note {
+  margin-top: 2.5rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  background: rgba(251, 191, 36, 0.06);
+}
+
+.policy-note h2 {
+  color: #fcd34d;
+}
+
+.policy-note p,
+.policy-note li {
+  color: #d4d4d8;
+}

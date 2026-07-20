@@ -41,23 +41,22 @@ export async function getProductById(
   req: Request,
   res: Response
 ) {
+  const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+
+  if (!id) {
+    return res.status(400).json({ error: "Product id is required" });
+  }
+
   try {
     const product = await prisma.product.findUnique({
-      where: {
-        id: Array.isArray(req.params.id)
-  ? req.params.id[0]
-  : req.params.id,
-      },
+      where: { id },
     });
 
     if (product) {
       return res.json(product);
     }
 
-    // If database has no product, search fallback products
-    const fallbackProduct = fallbackProducts.find(
-      (p) => p.id === req.params.id
-    );
+    const fallbackProduct = fallbackProducts.find((p) => p.id === id);
 
     if (fallbackProduct) {
       return res.json(fallbackProduct);
@@ -68,6 +67,11 @@ export async function getProductById(
     });
   } catch (error) {
     console.error(error);
+
+    const fallbackProduct = fallbackProducts.find((p) => p.id === id);
+    if (fallbackProduct) {
+      return res.json(fallbackProduct);
+    }
 
     return res.status(500).json({
       error: "Server error",

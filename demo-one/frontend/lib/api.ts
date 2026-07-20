@@ -1,11 +1,12 @@
 import axios from "axios";
 import { Product } from "@/types/product";
 
-const baseURL =
-  process.env.NEXT_PUBLIC_API_URL || "https://fashion-fit-backend-7kgf.onrender.com";
+export const getApiBaseUrl = () =>
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://fashion-fit-backend-7kgf.onrender.com";
 
 export const api = axios.create({
-  baseURL,
+  baseURL: getApiBaseUrl(),
   headers: {
     "Content-Type": "application/json",
   },
@@ -16,4 +17,22 @@ export async function getProducts(): Promise<Product[]> {
     "/api/products"
   );
   return data.products;
+}
+
+export async function getProductById(id: string): Promise<Product | null> {
+  try {
+    const { data } = await api.get<Product>(`/api/products/${id}`);
+    if (data?.id) {
+      return data;
+    }
+  } catch {
+    // Fall through to list lookup below.
+  }
+
+  try {
+    const products = await getProducts();
+    return products.find((product) => product.id === id) ?? null;
+  } catch {
+    return null;
+  }
 }

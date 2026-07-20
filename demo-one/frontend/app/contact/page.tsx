@@ -8,6 +8,12 @@ export default function ContactPage() {
           message and we will get back within one business day.
         </p>
 
+        <p className="text-sm text-amber-200/90 mb-8 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3">
+          Store owner: connect this form to your email API by setting{" "}
+          <code className="text-zinc-200">RESEND_API_KEY</code> (or SendGrid) in
+          the backend and posting submissions to an API route.
+        </p>
+
         <form className="space-y-6">
           <div>
             <label
