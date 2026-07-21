@@ -62,7 +62,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 3500,
     images: [
-      "/products/shoe1.jpeg",
+      "https://fashion-fit-backend-7kgf.onrender.com/products/shoe1.jpeg",
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -76,7 +76,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      "/products/shoe2.jpeg",
+      "https://fashion-fit-backend-7kgf.onrender.com/products/shoe2.jpeg",
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -90,7 +90,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      "/products/shoe3.jpeg",
+      "https://fashion-fit-backend-7kgf.onrender.com/products/shoe3.jpeg",
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -104,7 +104,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      "/products/shoe4.jpeg",
+      "https://fashion-fit-backend-7kgf.onrender.com/products/shoe4.jpeg",
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
