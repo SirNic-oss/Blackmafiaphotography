@@ -1,5 +1,7 @@
 import express, { Request, Response } from "express";
 import cors, { CorsOptions } from "cors";
+import path from "path";
+import uploadRoutes from "./routes/upload.routes";
 
 import productRoutes from "./routes/product.routes";
 import statusRoutes from "./routes/status.route";
@@ -28,6 +30,8 @@ const corsOptions: CorsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/api/uploads", uploadRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.json({

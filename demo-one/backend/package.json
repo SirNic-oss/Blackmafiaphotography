@@ -14,6 +14,7 @@
     "cors": "^2",
     "express": "^5",
     "jsonwebtoken": "^9",
+    "multer": "^2.2.0",
     "prisma": "^6",
     "stripe": "^18"
   },
@@ -21,6 +22,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5",
     "@types/jsonwebtoken": "^9",
+    "@types/multer": "^2.2.0",
     "@types/node": "^24",
     "@types/passport": "^1.0.17",
     "@types/passport-google-oauth20": "^2.0.17",
