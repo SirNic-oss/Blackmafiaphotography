@@ -1,15 +1,17 @@
 import express, { Request, Response } from "express";
 import cors, { CorsOptions } from "cors";
 import path from "path";
-import uploadRoutes from "./routes/upload.routes";
 
+import uploadRoutes from "./routes/upload.routes";
 import productRoutes from "./routes/product.routes";
 import statusRoutes from "./routes/status.route";
 
 const app = express();
 
-const frontendOrigin =
-  process.env.FRONTEND_URL || "https://fashion-fit-ruddy.vercel.app";
+const allowedOrigins = [
+  "https://fashion-fit-ruddy.vercel.app",
+  "https://fashion-fit-admin-dashboard-qfele6qqr-kgetho-s-projects.vercel.app",
+];
 
 const corsOptions: CorsOptions = {
   origin(origin, callback) {
@@ -19,7 +21,7 @@ const corsOptions: CorsOptions = {
 
     const isLocalDev = /^http:\/\/localhost:\d+$/.test(origin);
 
-    if (isLocalDev || origin === frontendOrigin) {
+    if (isLocalDev || allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
 
@@ -29,9 +31,15 @@ const corsOptions: CorsOptions = {
 };
 
 app.use(cors(corsOptions));
+
 app.use(express.json());
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/api/uploads", uploadRoutes);
+
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "../uploads"))
+);
+
+app.use("/api/upload", uploadRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.json({
@@ -46,5 +54,5 @@ app.use("/api/products", productRoutes);
 const port = Number(process.env.PORT) || 5000;
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`🚀 Server running on port ${port}`);
 });
