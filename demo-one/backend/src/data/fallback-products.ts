@@ -1,3 +1,5 @@
+import { backendBaseUrl } from "../config/backend";
+
 export const fallbackProducts = [
   {
     id: "seed-1",
@@ -62,7 +64,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 3500,
     images: [
-      "https://fashion-fit-backend-7kgf.onrender.com/products/shoe1.jpeg",
+      `${backendBaseUrl}/uploads/products/shoe1.jpeg`,
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -76,7 +78,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      "https://fashion-fit-backend-7kgf.onrender.com/products/shoe2.jpeg",
+      `${backendBaseUrl}/uploads/products/shoe2.jpeg`,
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -90,7 +92,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      "https://fashion-fit-backend-7kgf.onrender.com/products/shoe3.jpeg",
+      `${backendBaseUrl}/uploads/products/shoe3.jpeg`,
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -104,7 +106,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      "https://fashion-fit-backend-7kgf.onrender.com/products/shoe4.jpeg",
+      `${backendBaseUrl}/uploads/products/shoe4.jpeg`,
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],

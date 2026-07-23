@@ -22,14 +22,14 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
         <tbody>
           {orders.map((order) => (
             <tr key={order.id}>
-              <td className="font-medium text-white">{order.id}</td>
+              <td className="font-medium text-white">{order.orderNumber}</td>
               <td>
                 <div>
                   <p className="text-white">{order.customerName}</p>
-                  <p className="text-xs text-zinc-500">{order.customerEmail}</p>
+                  <p className="text-xs text-zinc-500">{order.email}</p>
                 </div>
               </td>
-              <td>{order.items}</td>
+              <td>{order.items.length}</td>
               <td>{formatCurrency(order.total)}</td>
               <td>
                 <span className={cn("status-badge", statusColor(order.status))}>

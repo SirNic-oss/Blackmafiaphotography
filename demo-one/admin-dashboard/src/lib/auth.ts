@@ -1,3 +1,5 @@
+import api from "@/lib/api";
+
 const AUTH_KEY = "admin_token";
 const USER_KEY = "admin_user";
 
@@ -7,18 +9,25 @@ export interface AdminUser {
   role: "ADMIN";
 }
 
-export function login(email: string, password: string): boolean {
+export async function login(email: string, password: string): Promise<boolean> {
   if (!email || !password) return false;
 
-  const user: AdminUser = {
-    email,
-    name: email.split("@")[0] || "Admin",
-    role: "ADMIN",
-  };
+  try {
+    const { data } = await api.post<{
+      access: string;
+      user: AdminUser;
+    }>("/api/auth/login", { email, password });
 
-  localStorage.setItem(AUTH_KEY, "demo-admin-token");
-  localStorage.setItem(USER_KEY, JSON.stringify(user));
-  return true;
+    if (!data.access || data.user?.role !== "ADMIN") {
+      return false;
+    }
+
+    localStorage.setItem(AUTH_KEY, data.access);
+    localStorage.setItem(USER_KEY, JSON.stringify(data.user));
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export function logout() {

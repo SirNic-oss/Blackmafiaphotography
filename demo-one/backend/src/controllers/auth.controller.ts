@@ -90,7 +90,12 @@ export const login = async (
       }
     );
   
-    res.json({
+  res.json({
       access,
+      user: {
+        email: user.email,
+        name: [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email.split("@")[0],
+        role: user.role,
+      },
     });
   };

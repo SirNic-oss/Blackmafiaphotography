@@ -4,6 +4,7 @@ import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmokeBackground from "@/components/background/SmokeBackground";
 import CartToast from "@/components/cart/CartToast";
+import Toast from "@/components/ui/Toast";
 
 export default function RootLayout({
   children,
@@ -20,6 +21,7 @@ export default function RootLayout({
          {children}
          <Footer />
          <CartToast />
+         <Toast />
          </div>
       </body>
     </html>

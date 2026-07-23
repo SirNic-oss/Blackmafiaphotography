@@ -5,6 +5,10 @@ import path from "path";
 import uploadRoutes from "./routes/upload.routes";
 import productRoutes from "./routes/product.routes";
 import statusRoutes from "./routes/status.route";
+import newsletterRoutes from "./routes/newsletter.routes";
+import orderRoutes from "./routes/order.routes";
+import paymentRoutes from "./routes/payment.routes";
+import authRoutes from "./routes/api/auth.routes";
 
 const app = express();
 
@@ -34,12 +38,8 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.use(
-  "/uploads",
-  express.static(path.join(__dirname, "../uploads"))
-);
-
-app.use("/api/upload", uploadRoutes);
+app.use("/uploads", express.static(path.resolve("uploads")));
+app.use("/api/uploads/products", uploadRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.json({
@@ -48,8 +48,11 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 app.use("/status", statusRoutes);
-
 app.use("/api/products", productRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/newsletter", newsletterRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/payments", paymentRoutes);
 
 const port = Number(process.env.PORT) || 5000;
 

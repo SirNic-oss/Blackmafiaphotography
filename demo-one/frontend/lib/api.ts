@@ -3,7 +3,7 @@ import { Product } from "@/types/product";
 
 export const getApiBaseUrl = () =>
   process.env.NEXT_PUBLIC_API_URL ||
-  "https://fashion-fit-backend-7kgf.onrender.com";
+  "http://localhost:5000";
 
 export const api = axios.create({
   baseURL: getApiBaseUrl(),

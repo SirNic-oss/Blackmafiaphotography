@@ -12,6 +12,7 @@ import {
   CreditCard,
   Settings,
   User,
+  Mail,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +24,7 @@ const links = [
   { href: "/reviews", label: "Reviews", icon: Star },
   { href: "/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/payments", label: "Payments", icon: CreditCard },
+  { href: "/newsletter", label: "Newsletter", icon: Mail },
   { href: "/settings", label: "Settings", icon: Settings },
   { href: "/profile", label: "Profile", icon: User },
 ];

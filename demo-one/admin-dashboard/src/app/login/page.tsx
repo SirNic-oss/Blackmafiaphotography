@@ -10,11 +10,12 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const success = login(email, password);
+    setError("");
+    const success = await login(email, password);
     if (!success) {
-      setError("Please enter your email and password.");
+      setError("Invalid credentials or insufficient admin access.");
       return;
     }
     router.push("/dashboard");

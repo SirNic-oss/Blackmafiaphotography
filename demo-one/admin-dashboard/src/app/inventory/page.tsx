@@ -12,10 +12,17 @@ import { useProducts } from "@/hooks/useProducts";
 
 export default function InventoryPage() {
   const router = useRouter();
-  const { products, loading } = useProducts();
+
+  const {
+    products,
+    loading,
+    setProducts,
+  } = useProducts();
 
   useEffect(() => {
-    if (!isAuthenticated()) router.push("/login");
+    if (!isAuthenticated()) {
+      router.push("/login");
+    }
   }, [router]);
 
   return (
@@ -25,7 +32,11 @@ export default function InventoryPage() {
           <h1>Inventory</h1>
           <p>Manage product stock and catalog items.</p>
         </div>
-        <Link href="/inventory/add-product" className="btn-primary">
+
+        <Link
+          href="/inventory/add-product"
+          className="btn-primary"
+        >
           Add Product
         </Link>
       </div>
@@ -36,10 +47,17 @@ export default function InventoryPage() {
         <>
           <div className="page-grid page-grid-3 mb-6">
             {products.slice(0, 3).map((product) => (
-              <InventoryCard key={product.id} product={product} />
+              <InventoryCard
+                key={product.id}
+                product={product}
+              />
             ))}
           </div>
-          <ProductTable products={products} />
+
+          <ProductTable
+            products={products}
+            setProducts={setProducts}
+          />
         </>
       )}
     </AdminShell>

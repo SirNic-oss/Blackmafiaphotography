@@ -1,39 +1,53 @@
+import api from "@/lib/api";
+
 export interface Payment {
   id: string;
   orderId: string;
   amount: number;
   provider: string;
-  status: "completed" | "pending" | "failed";
+  status: string;
+  paymentReference: string | null;
+  proofUrl: string | null;
+  proofFileName: string | null;
+  adminNotes: string | null;
   createdAt: string;
+  order?: {
+    orderNumber: string;
+    customerName: string;
+    email: string;
+  };
 }
 
-const mockPayments: Payment[] = [
-  {
-    id: "PAY-001",
-    orderId: "ORD-1001",
-    amount: 7700,
-    provider: "Stripe",
-    status: "completed",
-    createdAt: "2026-07-10",
-  },
-  {
-    id: "PAY-002",
-    orderId: "ORD-1002",
-    amount: 4200,
-    provider: "PayPal",
-    status: "completed",
-    createdAt: "2026-07-12",
-  },
-  {
-    id: "PAY-003",
-    orderId: "ORD-1003",
-    amount: 6800,
-    provider: "Stripe",
-    status: "pending",
-    createdAt: "2026-07-14",
-  },
-];
-
 export async function getPayments(): Promise<Payment[]> {
-  return mockPayments;
+  const { data } = await api.get<{ payments: Payment[] }>("/api/payments");
+  return data.payments;
+}
+
+export async function approvePayment(id: string): Promise<Payment> {
+  const { data } = await api.patch<{ payment: Payment }>(
+    `/api/payments/${id}/approve`
+  );
+  return data.payment;
+}
+
+export async function rejectPayment(
+  id: string,
+  notes?: string
+): Promise<Payment> {
+  const { data } = await api.patch<{ payment: Payment }>(
+    `/api/payments/${id}/reject`,
+    { notes }
+  );
+  return data.payment;
+}
+
+export async function requestNewProof(
+  id: string,
+  notes?: string
+): Promise<Payment> {
+  const { data } = await api.patch<{ payment: Payment }>(
+    `/api/payments/${id}/request-proof`,
+    { notes }
+  );
+  return data.payment;
 }

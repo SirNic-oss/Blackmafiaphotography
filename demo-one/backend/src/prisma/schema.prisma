@@ -13,113 +13,175 @@ enum UserRole {
 }
 
 enum OrderStatus {
-  PENDING
-  PAID
-  SHIPPED
+  ORDER_RECEIVED
+  AWAITING_PAYMENT
+  PAYMENT_CONFIRMED
+  SUPPLIER_PROCESSING
+  PACKED
+  COLLECTED
+  IN_TRANSIT
+  OUT_FOR_DELIVERY
   DELIVERED
   CANCELLED
 }
 
-model User {
-  id            String      @id @default(cuid())
-  email         String      @unique
-  password      String
-  firstName     String?
-  lastName      String?
-  role          UserRole    @default(USER)
-  createdAt     DateTime    @default(now())
+enum PaymentStatus {
+  AWAITING_PAYMENT
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  PROOF_REQUESTED
+}
 
-  orders        Order[]
-  reviews       Review[]
-  wishlist      Wishlist[]
-  cart          Cart[]
+enum PaymentProvider {
+  EFT
+  STRIPE
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  firstName String?
+  lastName  String?
+  role      UserRole @default(USER)
+  createdAt DateTime @default(now())
+
+  orders   Order[]
+  reviews  Review[]
+  wishlist Wishlist[]
+  cart     Cart[]
 }
 
 model Product {
-  id            String      @id @default(cuid())
-  name          String
-  category      String
-  description   String
-  price         Float
+  id          String   @id @default(cuid())
+  name        String
+  category    String
+  description String
+  price       Float
+  images      String[]
+  colors      String[]
+  sizes       String[]
+  stock       Int
+  createdAt   DateTime @default(now())
 
-  images        String[]
-  colors        String[]
-  sizes         String[]
-
-  stock         Int
-
-  createdAt     DateTime    @default(now())
-
-  reviews       Review[]
-  wishlist      Wishlist[]
-  cart          Cart[]
+  reviews    Review[]
+  wishlist   Wishlist[]
+  cart       Cart[]
+  orderItems OrderItem[]
 }
 
 model Category {
-  id            String      @id @default(cuid())
-  name          String      @unique
+  id   String @id @default(cuid())
+  name String @unique
 }
 
 model Review {
-  id            String      @id @default(cuid())
-
-  rating        Int
-  comment       String
-
-  userId        String
-  productId     String
-
-  user          User        @relation(fields:[userId], references:[id])
-  product       Product     @relation(fields:[productId], references:[id])
+  id        String @id @default(cuid())
+  rating    Int
+  comment   String
+  userId    String
+  productId String
+  user      User   @relation(fields: [userId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 model Wishlist {
-  id            String      @id @default(cuid())
-
-  userId        String
-  productId     String
-
-  user          User        @relation(fields:[userId], references:[id])
-  product       Product     @relation(fields:[productId], references:[id])
+  id        String @id @default(cuid())
+  userId    String
+  productId String
+  user      User    @relation(fields: [userId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 model Cart {
-  id            String      @id @default(cuid())
+  id        String @id @default(cuid())
+  quantity  Int
+  userId    String
+  productId String
+  user      User    @relation(fields: [userId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+}
 
-  quantity      Int
-
-  userId        String
-  productId     String
-
-  user          User        @relation(fields:[userId], references:[id])
-  product       Product     @relation(fields:[productId], references:[id])
+model NewsletterSubscriber {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  subscribedAt DateTime @default(now())
+  isActive     Boolean  @default(true)
 }
 
 model Order {
-  id            String      @id @default(cuid())
+  id             String        @id @default(cuid())
+  orderNumber    String        @unique
+  customerName   String
+  email          String
+  phone          String
+  address        String
+  province       String?
+  postalCode     String?
+  subtotal       Float
+  shipping       Float         @default(0)
+  vat            Float         @default(0)
+  total          Float
+  paymentStatus  PaymentStatus @default(AWAITING_PAYMENT)
+  status         OrderStatus   @default(ORDER_RECEIVED)
+  trackingNumber String?
+  courier        String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
-  total         Float
+  userId String?
+  user   User?  @relation(fields: [userId], references: [id])
 
-  status        OrderStatus @default(PENDING)
+  items          OrderItem[]
+  payments       Payment[]
+  shipment       Shipment?
+  trackingEvents TrackingEvent[]
+}
 
-  createdAt     DateTime    @default(now())
-
-  userId        String
-
-  user          User        @relation(fields:[userId], references:[id])
-
-  payments      Payment[]
+model OrderItem {
+  id           String  @id @default(cuid())
+  orderId      String
+  productId    String?
+  productName  String
+  productImage String?
+  price        Float
+  quantity     Int
+  order        Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product      Product? @relation(fields: [productId], references: [id])
 }
 
 model Payment {
-  id            String      @id @default(cuid())
+  id               String          @id @default(cuid())
+  amount           Float
+  provider         PaymentProvider @default(EFT)
+  status           PaymentStatus   @default(AWAITING_PAYMENT)
+  paymentReference String?         @unique
+  proofUrl         String?
+  proofFileName    String?
+  adminNotes       String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  orderId          String
+  order            Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
 
-  amount        Float
-  provider      String
+model Shipment {
+  id             String   @id @default(cuid())
+  orderId        String   @unique
+  trackingNumber String?
+  courier        String   @default("Courier Guy")
+  status         String   @default("PENDING")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
 
-  createdAt     DateTime    @default(now())
-
-  orderId       String
-
-  order         Order       @relation(fields:[orderId], references:[id])
+model TrackingEvent {
+  id          String      @id @default(cuid())
+  orderId     String
+  status      OrderStatus
+  description String?
+  createdAt   DateTime    @default(now())
+  order       Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }

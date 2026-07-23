@@ -15,6 +15,7 @@ interface CartStore {
   notification: string | null;
   addToCart: (product: Product) => void;
   removeFromCart: (id: string) => void;
+  clearCart: () => void;
   clearNotification: () => void;
 }
 
@@ -57,6 +58,8 @@ export const useCartStore = create<CartStore>()(
         set((state) => ({
           cart: state.cart.filter((item) => item.id !== id),
         })),
+
+      clearCart: () => set({ cart: [] }),
 
       clearNotification: () => set({ notification: null }),
     }),

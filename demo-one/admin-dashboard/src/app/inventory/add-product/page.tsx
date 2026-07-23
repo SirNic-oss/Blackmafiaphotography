@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import AdminShell from "@/components/AdminShell";
 import { isAuthenticated } from "@/lib/auth";
 import { createProduct } from "@/services/product.service";
+import api from "@/lib/api";
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -19,34 +20,31 @@ export default function AddProductPage() {
     }
   }, [router]);
 
+  async function uploadImage() {
+    if (!selectedImage) return "";
+
+    const formData = new FormData();
+    formData.append("image", selectedImage);
+
+    const { data } = await api.post("/api/uploads/products", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    return data.imageUrl;
+  }
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSaving(true);
 
     try {
+      setSaving(true);
+
       const form = new FormData(event.currentTarget);
 
-      let imageUrl = "";
+      let imageUrl = String(form.get("imageUrl"));
 
       if (selectedImage) {
-        const imageData = new FormData();
-        imageData.append("image", selectedImage);
-
-        const uploadResponse = await fetch(
-          "https://fashion-fit-backend-7kgf.onrender.com/api/upload",
-          {
-            method: "POST",
-            body: imageData,
-          }
-        );
-
-        if (!uploadResponse.ok) {
-          throw new Error("Image upload failed");
-        }
-
-        const uploadResult = await uploadResponse.json();
-
-        imageUrl = uploadResult.imageUrl;
+        imageUrl = await uploadImage();
       }
 
       await createProduct({
@@ -57,19 +55,18 @@ export default function AddProductPage() {
         stock: Number(form.get("stock")),
         colors: String(form.get("colors"))
           .split(",")
-          .map((c) => c.trim())
-          .filter(Boolean),
+          .map((c) => c.trim()),
         sizes: String(form.get("sizes"))
           .split(",")
-          .map((s) => s.trim())
-          .filter(Boolean),
+          .map((s) => s.trim()),
         images: [imageUrl],
       });
 
       router.push("/inventory");
+      router.refresh();
     } catch (error) {
       console.error(error);
-      alert("Failed to save product.");
+      alert("Failed to create product.");
     } finally {
       setSaving(false);
     }
@@ -83,94 +80,93 @@ export default function AddProductPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="form-card form-grid">
+
         <div className="form-field">
-          <label htmlFor="name">Product Name</label>
-          <input id="name" name="name" required />
+          <label>Product Name</label>
+          <input name="name" required />
         </div>
 
         <div className="form-field">
-          <label htmlFor="category">Category</label>
-          <input id="category" name="category" required />
+          <label>Category</label>
+          <input name="category" required />
         </div>
 
         <div className="form-field">
-          <label htmlFor="description">Description</label>
-          <textarea id="description" name="description" required />
+          <label>Description</label>
+          <textarea name="description" required />
         </div>
 
         <div className="page-grid page-grid-2">
+
           <div className="form-field">
-            <label htmlFor="price">Price (ZAR)</label>
+            <label>Price</label>
             <input
-              id="price"
               name="price"
               type="number"
-              min="0"
               required
             />
           </div>
 
           <div className="form-field">
-            <label htmlFor="stock">Stock</label>
+            <label>Stock</label>
             <input
-              id="stock"
               name="stock"
               type="number"
-              min="0"
               required
             />
           </div>
+
         </div>
 
         <div className="form-field">
-          <label htmlFor="colors">Colors (comma separated)</label>
+          <label>Colors</label>
           <input
-            id="colors"
             name="colors"
             placeholder="Black, White"
           />
         </div>
 
         <div className="form-field">
-          <label htmlFor="sizes">Sizes (comma separated)</label>
+          <label>Sizes</label>
           <input
-            id="sizes"
             name="sizes"
-            placeholder="S, M, L, XL"
+            placeholder="8,9,10,11"
           />
         </div>
 
         <div className="form-field">
-          <label htmlFor="image">Product Image</label>
+          <label>Upload Image</label>
 
           <input
-            id="image"
             type="file"
             accept="image/*"
-            required
             onChange={(e) => {
               const file = e.target.files?.[0];
 
               if (!file) return;
 
               setSelectedImage(file);
+
               setPreview(URL.createObjectURL(file));
             }}
           />
+        </div>
 
-          {preview && (
-            <img
-              src={preview}
-              alt="Preview"
-              style={{
-                width: "180px",
-                height: "180px",
-                objectFit: "cover",
-                marginTop: "12px",
-                borderRadius: "8px",
-              }}
-            />
-          )}
+        {preview && (
+          <img
+            src={preview}
+            alt="Preview"
+            className="w-40 rounded-lg"
+          />
+        )}
+
+        <div className="form-field">
+          <label>Or Image URL</label>
+          <input
+            name="imageUrl"
+            type="url"
+            placeholder="Optional"
+          />
         </div>
 
         <button
@@ -180,6 +176,7 @@ export default function AddProductPage() {
         >
           {saving ? "Saving..." : "Save Product"}
         </button>
+
       </form>
     </AdminShell>
   );

@@ -1,12 +1,13 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
+import { backendBaseUrl } from "../config/backend";
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, "uploads/products/");
   },
 
   filename: (req, file, cb) => {
@@ -27,7 +28,7 @@ router.post("/", upload.single("image"), (req, res) => {
   }
 
   res.json({
-    imageUrl: `/https://fashion-fit-backend-7kgf.onrender.com/uploads/${req.file.filename}`,
+    imageUrl: `${backendBaseUrl}/uploads/products/${req.file.filename}`,
   });
 });
 
