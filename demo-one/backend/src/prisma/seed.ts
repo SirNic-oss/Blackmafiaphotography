@@ -1,9 +1,45 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, UserRole } from "@prisma/client";
+import bcrypt from "bcryptjs";
 import { backendBaseUrl } from "../config/backend";
 
 const prisma = new PrismaClient();
 
 async function main() {
+  // =====================================================
+  // ADMIN ACCOUNT
+  // =====================================================
+
+  const adminEmail = "kgethomakofane@gmail.com";
+  const adminPassword = "6IXG#D2004";
+
+  const existingAdmin = await prisma.user.findUnique({
+    where: {
+      email: adminEmail,
+    },
+  });
+
+  if (!existingAdmin) {
+    const hashedPassword = await bcrypt.hash(adminPassword, 10);
+
+    await prisma.user.create({
+      data: {
+        email: adminEmail,
+        password: hashedPassword,
+        firstName: "Admin",
+        lastName: "User",
+        role: UserRole.ADMIN,
+      },
+    });
+
+    console.log("✅ Admin account created.");
+  } else {
+    console.log("⏩ Admin account already exists.");
+  }
+
+  // =====================================================
+  // SAMPLE PRODUCTS
+  // =====================================================
+
   const products = [
     {
       name: "example",
@@ -75,10 +111,15 @@ async function main() {
       console.log(`⏩ Skipped ${product.images[0]}`);
     }
   }
+
+  console.log("🎉 Database seed completed successfully.");
 }
 
 main()
-  .catch(console.error)
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  })
   .finally(async () => {
     await prisma.$disconnect();
   });

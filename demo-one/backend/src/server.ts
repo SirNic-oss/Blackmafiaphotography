@@ -13,8 +13,9 @@ import authRoutes from "./routes/api/auth.routes";
 const app = express();
 
 const allowedOrigins = [
-  "https://fashion-fit-ruddy.vercel.app",
-  "https://fashion-fit-admin-dashboard-qfele6qqr-kgetho-s-projects.vercel.app",
+  process.env.FRONTEND_URL || "https://fashion-fit-ruddy.vercel.app",
+  process.env.ADMIN_FRONTEND_URL ||
+    "https://fashion-fit-admin-dashboard-qfele6qqr-kgetho-s-projects.vercel.app",
 ];
 
 const corsOptions: CorsOptions = {
