@@ -15,7 +15,7 @@ const app = express();
 const allowedOrigins = [
   process.env.FRONTEND_URL || "https://fashion-fit-ruddy.vercel.app",
   process.env.ADMIN_FRONTEND_URL ||
-    "https://fashion-fit-admin-dashboard-qfele6qqr-kgetho-s-projects.vercel.app",
+    "https://fashion-fit-admin-dashboard.vercel.app",
 ];
 
 const corsOptions: CorsOptions = {
