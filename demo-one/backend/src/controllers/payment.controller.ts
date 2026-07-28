@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { sendOrderEmail } from "../services/email.service";
 import { backendBaseUrl } from "../config/backend";
+import { bankDetails } from "../config/bank";
 
 const prisma = new PrismaClient();
 
@@ -50,10 +51,10 @@ export async function getPaymentByOrderNumber(req: Request, res: Response) {
         customerName: order.customerName,
       },
       bankDetails: {
-        bankName: process.env.BANK_NAME || "BANK_NAME",
-        accountName: process.env.BANK_ACCOUNT_NAME || "ACCOUNT_NAME",
-        accountNumber: process.env.BANK_ACCOUNT || "ACCOUNT_NUMBER",
-        branchCode: process.env.BANK_BRANCH || "BRANCH_CODE",
+        bankName: bankDetails.bankName,
+        accountName: bankDetails.accountName,
+        accountNumber: bankDetails.accountNumber,
+        branchCode: bankDetails.branchCode,
       },
     });
   } catch (error) {

@@ -9,6 +9,7 @@ import newsletterRoutes from "./routes/newsletter.routes";
 import orderRoutes from "./routes/order.routes";
 import paymentRoutes from "./routes/payment.routes";
 import authRoutes from "./routes/api/auth.routes";
+import bankRoutes from "./routes/bank.routes";
 
 const app = express();
 
@@ -41,7 +42,7 @@ app.use(express.json());
 
 app.use("/uploads", express.static(path.resolve("uploads")));
 app.use("/api/uploads/products", uploadRoutes);
-
+app.use("/api/bank", bankRoutes);
 app.get("/", (_req: Request, res: Response) => {
   res.json({
     message: "Fashion Fit Backend Running 🚀",
