@@ -30,7 +30,10 @@ export default function AdminShell({
 
       {/* Main content */}
       <div className="flex flex-1 flex-col lg:ml-64">
-        <Navbar onMenuClick={() => setSidebarOpen(true)} />
+        <Navbar
+         onMenuClick={() => setSidebarOpen(!sidebarOpen)}
+         sidebarOpen={sidebarOpen}
+        />
         <main className="flex-1 p-6">{children}</main>
         <Footer />
       </div>
