@@ -41,6 +41,7 @@ export const login = async (
     req: any,
     res: any
   ) => {
+  try {
     const {
       email,
       password,
@@ -100,4 +101,10 @@ export const login = async (
         role: user.role,
       },
     });
+  } catch (error) {
+    console.error("Login failed:", error);
+    res.status(500).json({
+      message: "Unable to sign in. Please try again later.",
+    });
+  }
   };

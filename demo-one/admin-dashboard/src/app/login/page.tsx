@@ -12,9 +12,9 @@ export default function LoginPage() {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const success = await login(email, password);
-    if (!success) {
-      setError("Please enter your email and password.");
+    const result = await login(email, password);
+    if (!result.success) {
+      setError(result.message || "Unable to sign in.");
       return;
     }
     router.push("/dashboard");
