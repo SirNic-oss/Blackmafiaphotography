@@ -5,6 +5,25 @@
 **/build/
 **/*.tsbuildinfo
 
+# Tooling, test, and deployment caches
+**/.cache/
+**/.turbo/
+**/.vercel/
+**/coverage/
+**/.eslintcache
+**/.stylelintcache
+*.lcov
+
+# Package-manager and framework diagnostics
+**/.npm/
+**/.pnpm-store/
+**/.yarn/cache/
+**/.yarn/unplugged/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
 # Local environment configuration (keep documented templates)
 .env
 .env.*
