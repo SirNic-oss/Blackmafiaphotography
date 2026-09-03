@@ -32,9 +32,13 @@ void main(){
   col.g-=fbm(uv*1.003+vec2(0,T*.015)+n+.003);
   col.b-=fbm(uv*1.006+vec2(0,T*.015)+n+.006);
 
-  // KEY CHANGE: Instead of mixing with white (vec3(1)), we mix with our custom.
-  // This tints the brightest parts of the noise with the color provided by the user.
-  col=mix(col, u_color, dot(col,vec3(.21,.71,.07)));
+  // Tint the brightest dust with a varied gold palette rather than flat gray.
+  float glow = dot(col,vec3(.21,.71,.07));
+  float shade = smoothstep(.15,.85,noise(uv*2.5+vec2(T*.018,-T*.011)));
+  vec3 gold = mix(vec3(.42,.19,.018), vec3(1.0,.72,.12), shade);
+  gold = mix(gold, vec3(.82,.43,.045), noise(uv*5.0-vec2(T*.01))*.45);
+  gold = mix(gold, u_color, .18);
+  col=mix(col, gold, glow);
 
   col=mix(vec3(.08),col,min(time*.1,1.));
   col=clamp(col,.08,1.);
@@ -158,7 +162,7 @@ interface SmokeBackgroundProps {
 }
 
 export const SmokeBackground: React.FC<SmokeBackgroundProps> = ({ 
-  smokeColor = "#808080" // Default to gray
+  smokeColor = "#D4AF37" // Warm gold base for the dust/smoke highlights
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const rendererRef = useRef<Renderer | null>(null);

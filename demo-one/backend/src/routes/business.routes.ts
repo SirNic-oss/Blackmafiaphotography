@@ -1,0 +1,20 @@
+import { Router } from "express";
+import { adminMiddleware } from "../middleware/admin.middleware";
+import { authMiddleware } from "../middleware/auth.middleware";
+import { adminCustomers, adminServices, adminTestimonials, createService, createTestimonial, deactivateService, deleteTestimonial, getSiteSettings, listTestimonials, updateService, updateSiteSettings, updateTestimonial } from "../controllers/business.controller";
+
+const router = Router();
+router.get("/testimonials", listTestimonials);
+router.get("/site-settings", getSiteSettings);
+router.use("/admin", authMiddleware, adminMiddleware);
+router.get("/admin/services", adminServices);
+router.post("/admin/services", createService);
+router.patch("/admin/services/:id", updateService);
+router.delete("/admin/services/:id", deactivateService);
+router.get("/admin/customers", adminCustomers);
+router.get("/admin/testimonials", adminTestimonials);
+router.post("/admin/testimonials", createTestimonial);
+router.patch("/admin/testimonials/:id", updateTestimonial);
+router.delete("/admin/testimonials/:id", deleteTestimonial);
+router.put("/admin/site-settings", updateSiteSettings);
+export default router;

@@ -4,92 +4,49 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  Package,
-  ShoppingCart,
+  CalendarDays,
+  CalendarRange,
+  CalendarOff,
+  Images,
   Users,
-  Star,
-  BarChart3,
-  CreditCard,
+  Camera,
+  MessageSquareQuote,
   Settings,
   User,
-  Mail,
-  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface SidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 const links = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/inventory", label: "Inventory", icon: Package },
-  { href: "/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
+  { href: "/calendar", label: "Booking calendar", icon: CalendarRange },
+  { href: "/bookings", label: "Bookings", icon: CalendarDays },
+  { href: "/availability", label: "Availability", icon: CalendarOff },
   { href: "/customers", label: "Customers", icon: Users },
-  { href: "/reviews", label: "Reviews", icon: Star },
-  { href: "/analytics", label: "Analytics", icon: BarChart3 },
-  { href: "/payments", label: "Payments", icon: CreditCard },
-  { href: "/newsletter", label: "Newsletter", icon: Mail },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/services", label: "Services", icon: Camera },
+  { href: "/portfolio", label: "Portfolio", icon: Images },
+  { href: "/testimonials", label: "Testimonials", icon: MessageSquareQuote },
+  { href: "/settings", label: "Website settings", icon: Settings },
   { href: "/profile", label: "Profile", icon: User },
 ];
 
-export default function Sidebar({
-  isOpen,
-  onClose,
-}: SidebarProps) {
+export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside
-      className={cn(
-        "fixed top-0 left-0 z-50 h-full w-64 bg-zinc-900 border-r border-zinc-800 transform transition-transform duration-300",
-        isOpen ? "translate-x-0" : "-translate-x-full",
-        "lg:translate-x-0 lg:z-30"
-      )}
-    >
-      <div className="flex items-center justify-between p-6 border-b border-zinc-800">
-        <div className="flex items-center gap-3">
-          <img
-            src="/logo.png"
-            alt="Fashion-Fit"
-            className="h-8 w-8 rounded-lg"
-          />
-          <div>
-            <p className="text-sm font-semibold text-white">
-              Fashion-Fit
-            </p>
-            <p className="text-xs text-zinc-500">
-              Admin Panel
-            </p>
-          </div>
+    <aside className="sidebar">
+      <div className="sidebar-brand">
+        <img src="/logo.png" alt="Photography business" className="h-8 w-8 rounded-lg" />
+        <div>
+          <p className="text-sm font-semibold text-white">Lumen Studio</p>
+          <p className="text-xs text-zinc-500">Photography Admin</p>
         </div>
-
-        <button
-          onClick={onClose}
-          className="lg:hidden text-white"
-        >
-          <X size={22} />
-        </button>
       </div>
 
-      <nav className="flex flex-col p-4 gap-2">
+      <nav className="sidebar-nav">
         {links.map(({ href, label, icon: Icon }) => {
-          const active =
-            pathname === href ||
-            pathname.startsWith(`${href}/`);
-
+          const active = pathname === href || pathname.startsWith(`${href}/`);
           return (
-            <Link
-              key={href}
-              href={href}
-              onClick={onClose}
-              className={cn(
-                "flex items-center gap-3 rounded-lg px-4 py-3 text-zinc-300 hover:bg-zinc-800 transition",
-                active && "bg-zinc-800 text-white"
-              )}
-            >
+            <Link key={href} href={href} className={cn("sidebar-link", active && "sidebar-link-active")}>
               <Icon size={18} />
               <span>{label}</span>
             </Link>

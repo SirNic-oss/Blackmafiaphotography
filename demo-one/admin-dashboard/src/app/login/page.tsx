@@ -12,10 +12,9 @@ export default function LoginPage() {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    setError("");
     const success = await login(email, password);
     if (!success) {
-      setError("Invalid credentials or insufficient admin access.");
+      setError("Please enter your email and password.");
       return;
     }
     router.push("/dashboard");
@@ -27,8 +26,8 @@ export default function LoginPage() {
         <div className="mb-6 flex items-center gap-3">
           <img src="/logo.png" alt="Fashion-Fit" className="h-10 w-10 rounded-xl" />
           <div>
-            <h1 className="text-xl font-semibold">Fashion-Fit Admin</h1>
-            <p className="text-sm text-zinc-400">Sign in to manage your store</p>
+            <h1 className="text-xl font-semibold">Photography Admin</h1>
+            <p className="text-sm text-zinc-400">Sign in to manage bookings</p>
           </div>
         </div>
 
@@ -40,7 +39,7 @@ export default function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@fashionfit.com"
+              placeholder="admin@lumenstudio.com"
             />
           </div>
           <div className="form-field">

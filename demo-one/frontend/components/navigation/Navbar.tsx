@@ -7,11 +7,11 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/shop", label: "Shop" },
-  { href: "/story", label: "Story" },
-  { href: "/policies", label: "Policies" },
-  { href: "/cart", label: "Cart" },
-  { href: "/checkout", label: "Checkout" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/booking", label: "Book a session" },
 ] as const;
 
 function linkClass(isActive: boolean) {
@@ -32,9 +32,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto h-20 flex items-center justify-between px-6">
         <Link
           href="/"
-          className="text-white font-bold text-2xl tracking-tight hover:opacity-90 transition-opacity"
+          className="font-display text-white text-2xl tracking-tight hover:opacity-90 transition-opacity"
         >
-          FASHION FIT
+          LUMEN STUDIO
         </Link>
 
         {/* Desktop Navigation */}

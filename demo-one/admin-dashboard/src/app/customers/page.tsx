@@ -20,7 +20,7 @@ export default function CustomersPage() {
     <AdminShell>
       <div className="page-header">
         <h1>Customers</h1>
-        <p>View customer profiles and purchase history.</p>
+        <p>View client information and booking history from the customer website.</p>
       </div>
       {loading ? <LoadingSpinner /> : <CustomerTable customers={customers} />}
     </AdminShell>

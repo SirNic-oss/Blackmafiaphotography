@@ -1,5 +1,3 @@
-import { backendBaseUrl } from "../config/backend";
-
 export const fallbackProducts = [
   {
     id: "seed-1",
@@ -64,7 +62,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 3500,
     images: [
-      `${backendBaseUrl}/uploads/products/shoe1.jpeg`,
+      "http://localhost:5000/uploads/products/shoe1.jpeg",
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -78,7 +76,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      `${backendBaseUrl}/uploads/products/shoe2.jpeg`,
+      "http://localhost:5000/uploads/products/shoe2.jpeg",
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -92,7 +90,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      `${backendBaseUrl}/uploads/products/shoe3.jpeg`,
+      "http://localhost:5000/uploads/products/shoe3.jpeg",
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],
@@ -106,7 +104,7 @@ export const fallbackProducts = [
     description: "Premium lightweight runner with sculpted sole.",
     price: 2750,
     images: [
-      `${backendBaseUrl}/uploads/products/shoe4.jpeg`,
+      "http://localhost:5000/uploads/products/shoe4.jpeg",
     ],
     colors: ["Black", "White"],
     sizes: ["8", "9", "10", "11"],

@@ -2,9 +2,7 @@ import "./globals.css";
 
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/layout/Footer";
-import SmokeBackground from "@/components/background/SmokeBackground";
-import CartToast from "@/components/cart/CartToast";
-import Toast from "@/components/ui/Toast";
+import ShadersBackground from "@/components/background/ShadersBackground";
 
 export default function RootLayout({
   children,
@@ -14,14 +12,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
-        <SmokeBackground />
+        <ShadersBackground />
 
        <div className="relative z-10">
         <Navbar />
          {children}
          <Footer />
-         <CartToast />
-         <Toast />
          </div>
       </body>
     </html>

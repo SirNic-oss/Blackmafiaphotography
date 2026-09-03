@@ -5,19 +5,16 @@ import path from "path";
 import uploadRoutes from "./routes/upload.routes";
 import productRoutes from "./routes/product.routes";
 import statusRoutes from "./routes/status.route";
-import newsletterRoutes from "./routes/newsletter.routes";
-import orderRoutes from "./routes/order.routes";
-import paymentRoutes from "./routes/payment.routes";
+import bookingRoutes from "./routes/booking.routes";
 import authRoutes from "./routes/api/auth.routes";
-import bankRoutes from "./routes/bank.routes";
+import portfolioRoutes from "./routes/portfolio.routes";
+import businessRoutes from "./routes/business.routes";
+import portfolioUploadRoutes from "./routes/portfolio-upload.routes";
+import { getAllowedOrigins } from "./config/env";
 
 const app = express();
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL || "https://fashion-fit-ruddy.vercel.app",
-  process.env.ADMIN_FRONTEND_URL ||
-    "https://fashion-fit-admin-dashboard.vercel.app",
-];
+const allowedOrigins = getAllowedOrigins();
 
 const corsOptions: CorsOptions = {
   origin(origin, callback) {
@@ -42,19 +39,24 @@ app.use(express.json());
 
 app.use("/uploads", express.static(path.resolve("uploads")));
 app.use("/api/uploads/products", uploadRoutes);
-app.use("/api/bank", bankRoutes);
+app.use("/api/uploads/portfolio", portfolioUploadRoutes);
+
 app.get("/", (_req: Request, res: Response) => {
   res.json({
-    message: "Fashion Fit Backend Running 🚀",
+    message: "FBlack mafia Backend Running 🚀",
   });
 });
 
 app.use("/status", statusRoutes);
+
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/newsletter", newsletterRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/payments", paymentRoutes);
+app.use("/api", bookingRoutes);
+app.use("/api", portfolioRoutes);
+app.use("/api", businessRoutes);
+
+console.log("Current __dirname:", __dirname);
+console.log("Uploads path:", path.join(__dirname, "../uploads"));
 
 const port = Number(process.env.PORT) || 5000;
 

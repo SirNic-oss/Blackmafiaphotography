@@ -1,9 +1,10 @@
-import api from "@/lib/api";
+import { getApiBaseUrl } from "@/lib/api";
 
 const AUTH_KEY = "admin_token";
 const USER_KEY = "admin_user";
 
 export interface AdminUser {
+  id: string;
   email: string;
   name: string;
   role: "ADMIN";
@@ -11,23 +12,15 @@ export interface AdminUser {
 
 export async function login(email: string, password: string): Promise<boolean> {
   if (!email || !password) return false;
-
-  try {
-    const { data } = await api.post<{
-      access: string;
-      user: AdminUser;
-    }>("/api/auth/login", { email, password });
-
-    if (!data.access || data.user?.role !== "ADMIN") {
-      return false;
-    }
-
-    localStorage.setItem(AUTH_KEY, data.access);
-    localStorage.setItem(USER_KEY, JSON.stringify(data.user));
-    return true;
-  } catch {
-    return false;
-  }
+  const response = await fetch(`${getApiBaseUrl()}/api/auth/login`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify({ email, password }),
+  });
+  if (!response.ok) return false;
+  const data = await response.json() as { access: string; user: AdminUser };
+  if (data.user.role !== "ADMIN") return false;
+  localStorage.setItem(AUTH_KEY, data.access);
+  localStorage.setItem(USER_KEY, JSON.stringify(data.user));
+  return true;
 }
 
 export function logout() {

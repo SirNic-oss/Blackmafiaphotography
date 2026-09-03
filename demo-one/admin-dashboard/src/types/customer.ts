@@ -1,9 +1,1 @@
-export interface Customer {
-  id: string;
-  name: string;
-  email: string;
-  orders: number;
-  totalSpent: number;
-  joinedAt: string;
-  status: "active" | "inactive";
-}
+export type { BookingCustomer as Customer } from "@/types/business";

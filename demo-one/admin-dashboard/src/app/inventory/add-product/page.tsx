@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import AdminShell from "@/components/AdminShell";
 import { isAuthenticated } from "@/lib/auth";
 import { createProduct } from "@/services/product.service";
-import api from "@/lib/api";
+
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -26,9 +28,16 @@ export default function AddProductPage() {
     const formData = new FormData();
     formData.append("image", selectedImage);
 
-    const { data } = await api.post("/api/uploads/products", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
+    const response = await fetch(`${BACKEND_URL}/api/uploads/products`, {
+      method: "POST",
+      body: formData,
     });
+
+    if (!response.ok) {
+      throw new Error("Image upload failed");
+    }
+
+    const data = await response.json();
 
     return data.imageUrl;
   }

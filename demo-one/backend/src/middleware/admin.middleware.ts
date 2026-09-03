@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 
-export const adminMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const user = req.user as { role?: "ADMIN" | "USER" } | undefined;
+type AuthUser = { id: string; role: "ADMIN" | "USER" };
 
+export const adminMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  const user = req.user as AuthUser | undefined;
   if (user?.role === "ADMIN") {
-    next(); 
+    next();
   } else {
     res.status(403).json({ error: "Forbidden: Admins only" });
   }

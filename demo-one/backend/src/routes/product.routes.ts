@@ -6,8 +6,6 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/product.controller";
-import { authMiddleware } from "../middleware/auth.middleware";
-import { adminMiddleware } from "../middleware/admin.middleware";
 
 const router = Router();
 
@@ -18,12 +16,12 @@ router.get("/", getProducts);
 router.get("/:id", getProductById);
 
 // Create product
-router.post("/", authMiddleware, adminMiddleware, createProduct);
+router.post("/", createProduct);
 
 // Update product
-router.put("/:id", authMiddleware, adminMiddleware, updateProduct);
+router.put("/:id", updateProduct);
 
 // Delete product
-router.delete("/:id", authMiddleware, adminMiddleware, deleteProduct);
+router.delete("/:id", deleteProduct);
 
 export default router;

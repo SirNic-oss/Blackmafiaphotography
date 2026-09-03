@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
-import { backendBaseUrl } from "../config/backend";
+import { getPublicApiUrl } from "../config/env";
 
 const router = express.Router();
 
@@ -28,7 +28,7 @@ router.post("/", upload.single("image"), (req, res) => {
   }
 
   res.json({
-    imageUrl: `${backendBaseUrl}/uploads/products/${req.file.filename}`,
+    imageUrl: `${getPublicApiUrl()}/uploads/products/${req.file.filename}`,
   });
 });
 

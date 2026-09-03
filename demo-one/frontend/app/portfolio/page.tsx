@@ -1,0 +1,2 @@
+import PortfolioGrid from "@/components/photography/PortfolioGrid";
+export default function PortfolioPage() { return <main className="pt-32 pb-20 px-6"><div className="max-w-7xl mx-auto"><p className="text-sm uppercase tracking-[0.25em] text-zinc-500">Portfolio</p><h1 className="mt-4 text-5xl font-bold md:text-6xl">Stories in every frame.</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-400">Weddings, portraits, gatherings and creative work photographed with warmth, intention and room to breathe.</p><div className="mt-12"><PortfolioGrid /></div></div></main>; }
