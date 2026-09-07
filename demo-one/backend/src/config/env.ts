@@ -17,9 +17,6 @@ export function getAllowedOrigins(): string[] {
       if (item) origins.add(item);
     }
   }
-  // Legacy production URLs kept until replaced in deployment env
-  origins.add("https://fashion-fit-ruddy.vercel.app");
-  origins.add("https://fashion-fit-admin-dashboard-qfele6qqr-kgetho-s-projects.vercel.app");
   // Example production placeholders
   origins.add("https://www.example-lumenstudio.com");
   origins.add("https://admin.example-lumenstudio.com");

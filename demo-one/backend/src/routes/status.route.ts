@@ -7,7 +7,7 @@ router.get("/", (_req, res) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Fashion Fit Backend</title>
+        <title>Black Mafia Photography Backend</title>
         <style>
           body {
             margin: 0;
@@ -53,7 +53,7 @@ router.get("/", (_req, res) => {
 
       <body>
         <div class="card">
-          <h1>👟 Fashion Fit Backend</h1>
+          <h1>Black Mafia Photography Backend</h1>
 
           <p>Your backend server is running successfully.</p>
 
