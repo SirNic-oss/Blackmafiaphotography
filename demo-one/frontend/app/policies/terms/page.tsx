@@ -4,7 +4,7 @@ export default function TermsOfServicePage() {
   return (
     <PolicyLayout
       title="Terms of Service"
-      description="By using fashion-fit.com you agree to these terms."
+      description="By using blackmafia.com you agree to these terms."
     >
       <section>
         <h2>Use of the website</h2>
@@ -36,7 +36,7 @@ export default function TermsOfServicePage() {
       <section>
         <h2>Limitation of liability</h2>
         <p>
-          Fashion-Fit is not liable for indirect or consequential losses except
+          Black-Mafia is not liable for indirect or consequential losses except
           where required by South African consumer law. Nothing in these terms
           limits your statutory rights.
         </p>
@@ -47,7 +47,7 @@ export default function TermsOfServicePage() {
         <p>
           These terms are governed by the laws of the Republic of South Africa.
           Disputes should first be raised with{" "}
-          <a href="mailto:support@fashionfit.com">support@fashionfit.com</a>.
+          <a href="mailto:support@blackmafia.com">support@blackmafia.com</a>.
         </p>
       </section>
     </PolicyLayout>

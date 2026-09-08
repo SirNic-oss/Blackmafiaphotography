@@ -24,7 +24,7 @@ const policies = [
   {
     href: "/policies/terms",
     title: "Terms of Service",
-    description: "Rules for using the Fashion-Fit website and services.",
+    description: "Rules for using the Black-Mafia website and services.",
   },
   {
     href: "/policies/privacy",
@@ -40,7 +40,7 @@ export default function PoliciesPage() {
         <h1 className="text-white text-6xl font-bold mb-4">Policies</h1>
         <p className="text-zinc-400 text-lg mb-12 max-w-2xl">
           Transparent information about pricing, orders, refunds, and your
-          rights when shopping with Fashion-Fit.
+          rights when shopping with Black-Mafia.
         </p>
 
         <div className="grid gap-4">

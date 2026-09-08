@@ -1,6 +1,6 @@
-# Fashion-Fit Admin Dashboard
+# Black-Mafia Admin Dashboard
 
-Admin panel for managing products, orders, customers, and analytics for the Fashion-Fit store.
+Admin panel for managing products, orders, customers, and analytics for the Black-Mafia photography.
 
 ## Getting Started
 
@@ -13,7 +13,7 @@ Open [http://localhost:3001](http://localhost:3001).
 
 ## Environment
 
-Copy `.env.local` and set `NEXT_PUBLIC_API_URL` to your backend URL (default: `https://fashion-fit-backend-7kgf.onrender.com`).
+Copy `.env.local` and set `NEXT_PUBLIC_API_URL` to your backend URL (default: `https://blackmafiaphotography.onrender.com`).
 
 ## Demo Login
 

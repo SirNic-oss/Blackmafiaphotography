@@ -4,7 +4,7 @@ export default function RefundPolicyPage() {
   return (
     <PolicyLayout
       title="Refund Policy"
-      description="Our commitment to fair returns and refunds for Fashion-Fit purchases."
+      description="Our commitment to fair returns and refunds for Black-Mafia purchases."
     >
       <section>
         <h2>Return window</h2>
@@ -43,7 +43,7 @@ export default function RefundPolicyPage() {
         <h2>How to start a return</h2>
         <p>
           Email{" "}
-          <a href="mailto:support@fashionfit.com">support@fashionfit.com</a>{" "}
+          <a href="mailto:support@blackmafia.com">support@blackmafia.com</a>{" "}
           with your order number and reason for return. Replace the support
           address with your official business email before going live.
         </p>

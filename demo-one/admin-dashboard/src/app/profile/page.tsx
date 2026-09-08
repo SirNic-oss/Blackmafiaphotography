@@ -29,7 +29,7 @@ export default function ProfilePage() {
           />
           <div>
             <h2 className="text-lg font-medium text-white">{user?.name || "Admin"}</h2>
-            <p className="text-zinc-400">{user?.email || "admin@fashionfit.com"}</p>
+            <p className="text-zinc-400">{user?.email || "admin@blackmafia.com"}</p>
             <p className="mt-1 text-sm text-violet-300">{user?.role || "ADMIN"}</p>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function ProfilePage() {
           </div>
           <div className="form-field">
             <label htmlFor="email">Email</label>
-            <input id="email" type="email" defaultValue={user?.email || "admin@fashionfit.com"} />
+            <input id="email" type="email" defaultValue={user?.email || "admin@blackmafia.com"} />
           </div>
           <button type="button" className="btn-primary">
             Update Profile

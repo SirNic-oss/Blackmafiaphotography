@@ -85,7 +85,7 @@ export default function AddProductPage() {
     <AdminShell>
       <div className="page-header">
         <h1>Add Product</h1>
-        <p>Create a new item for the Fashion-Fit catalog.</p>
+        <p>Create a new item for the Black-Mafia catalog.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="form-card form-grid">

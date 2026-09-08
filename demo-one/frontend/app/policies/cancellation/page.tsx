@@ -4,7 +4,7 @@ export default function CancellationPolicyPage() {
   return (
     <PolicyLayout
       title="Cancellation Policy"
-      description="When and how you can cancel an order with Fashion-Fit."
+      description="When and how you can cancel an order with Black-Mafia."
     >
       <section>
         <h2>Before dispatch</h2>

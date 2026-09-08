@@ -46,7 +46,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
         <div>
           <p className="text-zinc-400 uppercase tracking-[0.3em]">
-            {product.category || "Fashion Fit"}
+            {product.category || "Black-Mafia"}
           </p>
 
           <h1 className="text-5xl md:text-6xl font-bold mt-4">

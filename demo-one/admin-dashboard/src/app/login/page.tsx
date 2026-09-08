@@ -24,7 +24,7 @@ export default function LoginPage() {
     <div className="login-page">
       <div className="login-card">
         <div className="mb-6 flex items-center gap-3">
-          <img src="/logo.png" alt="Fashion-Fit" className="h-10 w-10 rounded-xl" />
+          <img src="/logo.png" alt="Black-Mafia" className="h-10 w-10 rounded-xl" />
           <div>
             <h1 className="text-xl font-semibold">Photography Admin</h1>
             <p className="text-sm text-zinc-400">Sign in to manage bookings</p>

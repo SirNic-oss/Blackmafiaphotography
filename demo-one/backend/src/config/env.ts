@@ -17,8 +17,5 @@ export function getAllowedOrigins(): string[] {
       if (item) origins.add(item);
     }
   }
-  // Example production placeholders
-  origins.add("https://www.example-lumenstudio.com");
-  origins.add("https://admin.example-lumenstudio.com");
   return Array.from(origins);
 }

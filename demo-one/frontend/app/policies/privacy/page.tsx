@@ -4,7 +4,7 @@ export default function PrivacyPolicyPage() {
   return (
     <PolicyLayout
       title="Privacy Policy"
-      description="How Fashion-Fit handles your personal information."
+      description="How Black-Mafia handles your personal information."
     >
       <section>
         <h2>Information we collect</h2>
@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
         <p>
           You may request access, correction, or deletion of your data subject
           to POPIA (Protection of Personal Information Act). Contact{" "}
-          <a href="mailto:privacy@fashionfit.com">privacy@fashionfit.com</a>.
+          <a href="mailto:privacy@blackmafia.com">privacy@blackmafia.com</a>.
         </p>
       </section>
 

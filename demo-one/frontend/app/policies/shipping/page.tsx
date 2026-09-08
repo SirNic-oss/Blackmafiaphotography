@@ -4,7 +4,7 @@ export default function ShippingPolicyPage() {
   return (
     <PolicyLayout
       title="Shipping Policy"
-      description="Delivery options, timelines, and tracking for Fashion-Fit orders."
+      description="Delivery options, timelines, and tracking for Black-Mafia orders."
     >
       <section>
         <h2>Processing time</h2>

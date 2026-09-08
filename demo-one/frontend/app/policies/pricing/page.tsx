@@ -9,7 +9,7 @@ export default function PricingPolicyPage() {
       <section>
         <h2>Listed prices</h2>
         <p>
-          Product prices on Fashion-Fit include the item cost as shown on each
+          Product prices on Black-Mafia include the item cost as shown on each
           product page. Prices may change without notice, but confirmed orders
           are charged at the price shown at checkout.
         </p>

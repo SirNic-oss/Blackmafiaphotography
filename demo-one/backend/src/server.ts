@@ -41,7 +41,7 @@ app.use("/api/uploads/portfolio", portfolioUploadRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.json({
-    message: "FBlack mafia Backend Running 🚀",
+    message: "Black mafia Backend Running 🚀",
   });
 });
 
