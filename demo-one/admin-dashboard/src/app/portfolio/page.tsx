@@ -27,7 +27,8 @@ export default function PortfolioPage() {
     event.preventDefault();
     setSaving(true);
     setError("");
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     try {
       let imageUrl = String(form.get("imageUrl") || "").trim();
       if (file) {
@@ -42,7 +43,7 @@ export default function PortfolioPage() {
         displayOrder: Number(form.get("displayOrder") || 0),
         published: form.get("published") === "on",
       });
-      event.currentTarget.reset();
+      formElement.reset();
       setFile(null);
       load();
     } catch (e: unknown) {

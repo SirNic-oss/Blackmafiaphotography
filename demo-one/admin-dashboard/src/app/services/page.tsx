@@ -37,7 +37,8 @@ export default function ServicesPage() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     setSaving(true);
     setError("");
     const payload = {
@@ -55,7 +56,7 @@ export default function ServicesPage() {
         await createService(payload);
       }
       setEditing(null);
-      event.currentTarget.reset();
+      formElement.reset();
       load();
     } catch (e: unknown) {
       setError(

@@ -36,7 +36,8 @@ export default function TestimonialsPage() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     setSaving(true);
     setError("");
     const payload = {
@@ -51,7 +52,7 @@ export default function TestimonialsPage() {
       if (editing) await updateTestimonial(editing.id, payload);
       else await createTestimonial(payload);
       setEditing(null);
-      event.currentTarget.reset();
+      formElement.reset();
       load();
     } catch {
       setError("Could not save testimonial.");

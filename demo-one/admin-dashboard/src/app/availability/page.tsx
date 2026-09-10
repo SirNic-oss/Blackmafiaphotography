@@ -32,7 +32,8 @@ export default function AvailabilityPage() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     setSaving(true);
     setError("");
 
@@ -59,7 +60,7 @@ export default function AvailabilityPage() {
 
     try {
       await createBlock(startAt, endAt, String(form.get("reason") || ""));
-      event.currentTarget.reset();
+      formElement.reset();
       load();
     } catch (e: unknown) {
       setError(
