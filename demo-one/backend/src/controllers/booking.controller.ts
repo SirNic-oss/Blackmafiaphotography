@@ -87,7 +87,7 @@ export async function createBooking(req: Request, res: Response) {
       await tx.bookingSlot.createMany({ data: slotsFor(startAt, service.durationMinutes).map((startsAt) => ({ startsAt, bookingId: booking.id })) });
       return booking;
     });
-    res.status(201).json({ booking, message: "Your booking request has been received." });
+    res.status(201).json({ booking, message: "Your booking was submitted successfully. Black Mafia Support will email you to confirm your booking." });
   } catch (error) {
     if (error instanceof Error && (error.message === "UNAVAILABLE" || error.message.includes("Unique constraint"))) return res.status(409).json({ error: "That time was just booked or blocked. Please choose another slot." });
     console.error(error); res.status(500).json({ error: "Unable to create booking" });

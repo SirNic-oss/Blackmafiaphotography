@@ -36,7 +36,8 @@ export default function BookingPage() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!serviceId || !date || !time) { setNotice({ type: "error", text: "Please choose a service, date, and available time." }); return; }
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     setSubmitting(true); setNotice(null);
     try {
       const { data } = await api.post<{ message: string }>("/api/bookings", {
@@ -44,8 +45,8 @@ export default function BookingPage() {
         name: form.get("name"), email: form.get("email"), phone: form.get("phone"), message: form.get("message"),
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       });
-      setNotice({ type: "success", text: `${data.message} We will contact you to confirm the session.` });
-      event.currentTarget.reset(); setTime("");
+      setNotice({ type: "success", text: data.message });
+      formElement.reset(); setTime("");
       const { data: availability } = await api.get<{ slots: Slot[] }>("/api/availability", { params: { serviceId, date } });
       setSlots(availability.slots);
     } catch (error: unknown) {
