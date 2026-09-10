@@ -29,8 +29,11 @@ pnpm-debug.log*
 .env.*
 !.env.example
 
-# Runtime-generated uploads
-demo-one/backend/uploads/
+# Runtime-generated uploads. Keep user-generated files out of Git, but deploy
+# the curated portfolio image library served from /uploads/portfolio.
+demo-one/backend/uploads/*
+!demo-one/backend/uploads/portfolio/
+!demo-one/backend/uploads/portfolio/**
 
 # Disabled local configuration files
 *.disabled
