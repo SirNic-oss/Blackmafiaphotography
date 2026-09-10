@@ -5,7 +5,7 @@ Three apps share one backend API and database:
 | App | Folder | Local URL | Production example |
 |-----|--------|-----------|-------------------|
 | Customer website | `frontend/` | http://localhost:3000 | https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app |
-| Admin dashboard | `admin-dashboard/` | http://localhost:3001 | https://blackmafiaphotography-lbm5g.vercel.app |
+| Admin dashboard | `admin-dashboard/` | http://localhost:3001 | https://blackmafiaphotography-bm5g.vercel.app |
 | Backend API | `backend/` | http://localhost:5000 | https://blackmafiaphotography.onrender.com |
 
 ## Environment variables
@@ -19,7 +19,7 @@ Copy each app’s `.env.example` to `.env.local` (frontend/admin) or `.env` (bac
 DATABASE_URL=...
 PUBLIC_API_URL=https://blackmafiaphotography.onrender.com
 FRONTEND_URL=https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app
-ADMIN_URL=https://blackmafiaphotography-lbm5g.vercel.app
+ADMIN_URL=https://blackmafiaphotography-bm5g.vercel.app
 ```
 
 ### Frontend (`frontend/.env.local`)
@@ -31,7 +31,7 @@ NEXT_PUBLIC_SITE_URL=https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app
 ### Admin (`admin-dashboard/.env.local`)
 ```
 NEXT_PUBLIC_API_URL=https://blackmafiaphotography.onrender.com
-NEXT_PUBLIC_ADMIN_URL=https://blackmafiaphotography-lbm5g.vercel.app
+NEXT_PUBLIC_ADMIN_URL=https://blackmafiaphotography-bm5g.vercel.app
 ```
 
 ## Local development
@@ -67,8 +67,8 @@ Replace example URLs in each environment:
 | `NEXT_PUBLIC_API_URL` (frontend + admin) | `https://blackmafiaphotography.onrender.com` |
 | `NEXT_PUBLIC_SITE_URL` | `https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app` |
 | `FRONTEND_URL` | `https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app` |
-| `NEXT_PUBLIC_ADMIN_URL` | `https://blackmafiaphotography-lbm5g.vercel.app` |
-| `ADMIN_URL` | `https://blackmafiaphotography-lbm5g.vercel.app` |
+| `NEXT_PUBLIC_ADMIN_URL` | `https://blackmafiaphotography-bm5g.vercel.app` |
+| `ADMIN_URL` | `https://blackmafiaphotography-bm5g.vercel.app` |
 | `JWT_ACCESS_SECRET` / `JWT_REFRESH_SECRET` | Set as secret environment variables in Render; never commit them. |
 
 Changes made in the admin dashboard (bookings, availability, services, portfolio, testimonials, website settings) appear on the customer website immediately because both use the same backend API.
