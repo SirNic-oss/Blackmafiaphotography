@@ -18,7 +18,7 @@ Copy each app’s `.env.example` to `.env.local` (frontend/admin) or `.env` (bac
 ```
 DATABASE_URL=...
 PUBLIC_API_URL=https://blackmafiaphotography.onrender.com
-FRONTEND_URL=https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app
+FRONTEND_URL=https://blackmafiaphotography.vercel.app
 ADMIN_URL=https://blackmafiaphotography-bm5g.vercel.app
 ```
 
@@ -59,14 +59,19 @@ Admin login (after seed): `admin@lumenstudio.com` / `admin123`
 
 ## Production deployment
 
+The backend `start` script runs `prisma migrate deploy` before starting Express.
+On Render, use the repository's backend start command (`npm start`) rather than
+overriding it with `node dist/server.js`. This applies the `PortfolioItem`
+migration to the production database, which is required by `GET /api/portfolio`.
+
 Replace example URLs in each environment:
 
 | Variable | Example production value |
 |----------|-------------------------|
 | `PUBLIC_API_URL` | `https://blackmafiaphotography.onrender.com` |
 | `NEXT_PUBLIC_API_URL` (frontend + admin) | `https://blackmafiaphotography.onrender.com` |
-| `NEXT_PUBLIC_SITE_URL` | `https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app` |
-| `FRONTEND_URL` | `https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app` |
+| `NEXT_PUBLIC_SITE_URL` | `https://blackmafiaphotography.vercel.app` |
+| `FRONTEND_URL` | `https://blackmafiaphotography.vercel.app` |
 | `NEXT_PUBLIC_ADMIN_URL` | `https://blackmafiaphotography-bm5g.vercel.app` |
 | `ADMIN_URL` | `https://blackmafiaphotography-bm5g.vercel.app` |
 | `JWT_ACCESS_SECRET` / `JWT_REFRESH_SECRET` | Set as secret environment variables in Render; never commit them. |

@@ -10,6 +10,7 @@ export function getAllowedOrigins(): string[] {
     const value = trim(process.env[key]);
     if (value) origins.add(value);
   }
+  origins.add("https://blackmafiaphotography.vercel.app");
   origins.add("https://blackmafiaphotography-17yndgh8x-sir-nic.vercel.app");
   origins.add("https://blackmafiaphotography-bm5g.vercel.app");
   const extra = trim(process.env.ALLOWED_ORIGINS);
