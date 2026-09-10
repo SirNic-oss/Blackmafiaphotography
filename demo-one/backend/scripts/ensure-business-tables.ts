@@ -18,7 +18,7 @@ async function main() {
   if (!settings) {
     await prisma.siteSetting.create({
       data: {
-        businessName: "Lumen Studio",
+        businessName: "Black Mafia Photography",
         email: "hello@lumenstudio.com",
         phone: "+27 82 000 0000",
         location: "Johannesburg, South Africa",

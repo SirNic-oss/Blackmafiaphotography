@@ -233,7 +233,7 @@ model Testimonial {
 
 model SiteSetting {
   id          String   @id @default(cuid())
-  businessName String  @default("Lumen Studio")
+  businessName String  @default("Black Mafia Photography")
   email       String?
   phone       String?
   location    String?

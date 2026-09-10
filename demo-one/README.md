@@ -1,4 +1,4 @@
-# Lumen Studio — Photography Platform
+# Black Mafia Photography — Photography Platform
 
 Three apps share one backend API and database:
 

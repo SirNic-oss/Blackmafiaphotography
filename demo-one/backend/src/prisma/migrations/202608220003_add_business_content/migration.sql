@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS "Testimonial" (
 CREATE INDEX IF NOT EXISTS "Testimonial_published_displayOrder_idx" ON "Testimonial"("published", "displayOrder");
 CREATE TABLE IF NOT EXISTS "SiteSetting" (
   "id" TEXT NOT NULL,
-  "businessName" TEXT NOT NULL DEFAULT 'Lumen Studio',
+  "businessName" TEXT NOT NULL DEFAULT 'Black Mafia Photography',
   "email" TEXT,
   "phone" TEXT,
   "location" TEXT,

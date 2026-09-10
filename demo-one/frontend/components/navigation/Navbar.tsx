@@ -34,7 +34,7 @@ export default function Navbar() {
           href="/"
           className="font-display text-white text-2xl tracking-tight hover:opacity-90 transition-opacity"
         >
-          LUMEN STUDIO
+          BLACK MAFIA PHOTOGRAPHY
         </Link>
 
         {/* Desktop Navigation */}

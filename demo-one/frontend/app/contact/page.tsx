@@ -45,7 +45,7 @@ export default function ContactPage() {
           <dl className="mt-6 space-y-5 text-zinc-300">
             <div>
               <dt className="text-sm text-zinc-500">Business</dt>
-              <dd className="mt-1">{settings?.businessName || "Lumen Studio"}</dd>
+              <dd className="mt-1">{settings?.businessName || "Black Mafia Photography"}</dd>
             </div>
             <div>
               <dt className="text-sm text-zinc-500">Email</dt>

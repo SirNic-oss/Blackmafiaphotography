@@ -7,7 +7,7 @@ const id = (req: Request) => typeof req.params.id === "string" ? req.params.id :
 
 const defaultSiteSettings = () => ({
   id: "default",
-  businessName: "Lumen Studio",
+  businessName: "Black Mafia Photography",
   email: "hello@lumenstudio.com",
   phone: "+27 82 000 0000",
   location: "Johannesburg, South Africa",
@@ -59,4 +59,4 @@ export async function getSiteSettings(_req: Request, res: Response) {
     res.json({ settings: defaultSiteSettings() });
   }
 }
-export async function updateSiteSettings(req: Request, res: Response) { const current = await prisma.siteSetting.findFirst(); const data = { businessName: text(req.body.businessName) || "Lumen Studio", email: text(req.body.email) || null, phone: text(req.body.phone) || null, location: text(req.body.location) || null, instagram: text(req.body.instagram) || null, facebook: text(req.body.facebook) || null, pinterest: text(req.body.pinterest) || null, about: text(req.body.about) || null }; const settings = current ? await prisma.siteSetting.update({ where: { id: current.id }, data }) : await prisma.siteSetting.create({ data }); res.json({ settings }); }
+export async function updateSiteSettings(req: Request, res: Response) { const current = await prisma.siteSetting.findFirst(); const data = { businessName: text(req.body.businessName) || "Black Mafia Photography", email: text(req.body.email) || null, phone: text(req.body.phone) || null, location: text(req.body.location) || null, instagram: text(req.body.instagram) || null, facebook: text(req.body.facebook) || null, pinterest: text(req.body.pinterest) || null, about: text(req.body.about) || null }; const settings = current ? await prisma.siteSetting.update({ where: { id: current.id }, data }) : await prisma.siteSetting.create({ data }); res.json({ settings }); }

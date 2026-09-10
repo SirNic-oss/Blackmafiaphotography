@@ -14,7 +14,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           className="font-display max-w-3xl text-white text-5xl md:text-7xl leading-tight"
         >
-          Photographs that feel like you
+          Creating memories daily that will last a lifetime
         </motion.h1>
 
         <motion.p
@@ -22,7 +22,7 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           className="font-display text-zinc-300 mt-5 text-xl md:text-2xl"
         >
-          Lumen Studio documents celebrations, connection and the beautifully ordinary moments in between.
+          Black Mafia Photography documents celebrations, connection and the beautifully ordinary moments in between.
         </motion.p>
 
         <motion.div whileHover={{ scale: 1.05 }}>
