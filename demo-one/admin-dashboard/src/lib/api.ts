@@ -1,7 +1,10 @@
 import axios from "axios";
 
-export const getApiBaseUrl = () =>
-  (process.env.NEXT_PUBLIC_API_URL || "https://blackmafiaphotography.onrender.com").replace(/\/$/, "");
+export const getApiBaseUrl = () => {
+  const configured = process.env.NEXT_PUBLIC_API_URL?.trim();
+  const isLocal = Boolean(configured && /^(https?:\/\/)?(localhost|127\.0\.0\.1)(?::|\/|$)/i.test(configured));
+  return (configured && !isLocal ? configured : "https://blackmafiaphotography.onrender.com").replace(/\/$/, "");
+};
 
 const API_URL = getApiBaseUrl();
 
