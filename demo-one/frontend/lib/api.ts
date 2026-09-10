@@ -2,7 +2,7 @@ import axios from "axios";
 import { Product } from "@/types/product";
 
 export const getApiBaseUrl = () =>
-  (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000").replace(/\/$/, "");
+  (process.env.NEXT_PUBLIC_API_URL || "https://blackmafiaphotography.onrender.com").replace(/\/$/, "");
 
 export const api = axios.create({
   baseURL: getApiBaseUrl(),

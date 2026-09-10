@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getApiBaseUrl = () =>
-  (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000").replace(/\/$/, "");
+  (process.env.NEXT_PUBLIC_API_URL || "https://blackmafiaphotography.onrender.com").replace(/\/$/, "");
 
 const API_URL = getApiBaseUrl();
 

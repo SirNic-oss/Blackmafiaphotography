@@ -1,7 +1,7 @@
 import api from "./api";
 
 export const getApiBaseUrl = () =>
-  (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000").replace(/\/$/, "");
+  (process.env.NEXT_PUBLIC_API_URL || "https://blackmafiaphotography.onrender.com").replace(/\/$/, "");
 
 export { api as default };
 
