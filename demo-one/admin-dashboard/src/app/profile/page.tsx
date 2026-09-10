@@ -30,7 +30,7 @@ export default function ProfilePage() {
           <div>
             <h2 className="text-lg font-medium text-white">{user?.name || "Admin"}</h2>
             <p className="text-zinc-400">{user?.email || "admin@blackmafia.com"}</p>
-            <p className="mt-1 text-sm text-violet-300">{user?.role || "ADMIN"}</p>
+            <p className="mt-1 text-sm text-[#B59410]">{user?.role || "ADMIN"}</p>
           </div>
         </div>
 

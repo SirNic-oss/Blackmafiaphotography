@@ -82,10 +82,19 @@ export default function AvailabilityPage() {
 
       {error && <p className="mb-4 rounded-lg bg-red-500/10 p-3 text-red-300">{error}</p>}
 
+      <section className="availability-default mb-6" aria-label="Default booking availability">
+        <div>
+          <p className="availability-default-label">Default availability</p>
+          <h2>Available for bookings by default</h2>
+          <p>Every future day is open from 09:00 to 17:00 unless you add an unavailable date or time below. Existing bookings remain protected.</p>
+        </div>
+        <span className="availability-default-status">Available</span>
+      </section>
+
       <div className="mb-4 flex flex-wrap gap-2">
-        <button className={mode === "day" ? "btn-primary" : "btn-secondary"} onClick={() => setMode("day")}>Block full day</button>
-        <button className={mode === "time" ? "btn-primary" : "btn-secondary"} onClick={() => setMode("time")}>Block time range</button>
-        <button className={mode === "period" ? "btn-primary" : "btn-secondary"} onClick={() => setMode("period")}>Block custom period</button>
+        <button className={mode === "day" ? "btn-primary" : "btn-secondary"} onClick={() => setMode("day")}>Mark day unavailable</button>
+        <button className={mode === "time" ? "btn-primary" : "btn-secondary"} onClick={() => setMode("time")}>Mark time unavailable</button>
+        <button className={mode === "period" ? "btn-primary" : "btn-secondary"} onClick={() => setMode("period")}>Mark period unavailable</button>
       </div>
 
       <form onSubmit={submit} className="form-card form-grid mb-6">
@@ -127,7 +136,7 @@ export default function AvailabilityPage() {
           <label>Reason (optional)</label>
           <input name="reason" placeholder="Annual leave, personal appointment…" />
         </div>
-        <button className="btn-primary" disabled={saving}>{saving ? "Blocking…" : "Block availability"}</button>
+        <button className="btn-primary" disabled={saving}>{saving ? "Saving…" : "Save unavailable period"}</button>
       </form>
 
       <div className="table-wrap">

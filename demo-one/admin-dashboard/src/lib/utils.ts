@@ -23,7 +23,7 @@ export function statusColor(status: string): string {
     PENDING: "bg-amber-500/15 text-amber-300",
     PAID: "bg-emerald-500/15 text-emerald-300",
     SHIPPED: "bg-blue-500/15 text-blue-300",
-    DELIVERED: "bg-violet-500/15 text-violet-300",
+    DELIVERED: "bg-[#B59410]/15 text-[#B59410]",
     CANCELLED: "bg-red-500/15 text-red-300",
     active: "bg-emerald-500/15 text-emerald-300",
     inactive: "bg-zinc-500/15 text-zinc-300",

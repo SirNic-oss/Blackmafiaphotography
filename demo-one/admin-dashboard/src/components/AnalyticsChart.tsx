@@ -9,7 +9,7 @@ interface AnalyticsChartProps {
 export default function AnalyticsChart({
   title,
   data,
-  color = "#a78bfa",
+  color = "#B59410",
 }: AnalyticsChartProps) {
   const max = Math.max(...data.map((d) => d.value), 1);
 
