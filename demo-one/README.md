@@ -17,6 +17,7 @@ Copy each app’s `.env.example` to `.env.local` (frontend/admin) or `.env` (bac
 ### Backend (`backend/.env`)
 ```
 DATABASE_URL=...
+DIRECT_URL=...
 PUBLIC_API_URL=https://blackmafiaphotography.onrender.com
 FRONTEND_URL=https://blackmafiaphotography.vercel.app
 ADMIN_URL=https://blackmafiaphotography-bm5g.vercel.app
